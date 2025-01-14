@@ -23,5 +23,23 @@ pipeline {
                 sh './jenkins/scripts/kill.sh'
             }
         }
+        stage('Send Build to EC2') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: SSH_SERVER,
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: 'build/**',
+                                    remoteDirectory: '/var/www/react-app',
+                                    cleanRemote: true
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
     }
 }
