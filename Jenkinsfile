@@ -28,12 +28,12 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: 'EC2-Server',,
+                            configName: 'EC2-Server',
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: 'build/**',
                                     remoteDirectory: '/react-app',
-                                    cleanRemote: true
+                                    cleanRemote: true,
                                     execCommand: '''
                                         sudo cp -r /home/ubuntu/react-app/* /var/www/react-app/
                                     '''
