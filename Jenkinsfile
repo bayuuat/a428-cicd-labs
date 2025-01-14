@@ -16,10 +16,13 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Approval') {
+            input message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed'
+        }
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
+                sleep(time: 60, unit: 'SECONDS')
                 sh './jenkins/scripts/kill.sh'
             }
         }
