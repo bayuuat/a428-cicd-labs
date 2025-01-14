@@ -32,8 +32,11 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: 'build/**',
-                                    remoteDirectory: '/var/www/react-app',
+                                    remoteDirectory: '/react-app',
                                     cleanRemote: true
+                                    execCommand: '''
+                                        sudo cp -r /home/ubuntu/react-app/* /var/www/react-app/
+                                    '''
                                 )
                             ]
                         )
