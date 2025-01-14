@@ -28,7 +28,7 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: SSH_SERVER,
+                            configName: 'EC2-Server',,
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: 'build/**',
